@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <iron-ajax
               id="articleRequest"
-              url="http://localhost:3000"
+              url="{{api}}"
               params='{{requestParams}}'
               handle-as="json"
               last-response="{{ajaxResponse}}"
@@ -41,6 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ready: function() {
         console.log("ready");
         var self = this;
+        this.api = window.BlogConfig.api;
         this.requestParams = {
           articleName: "index"
         };

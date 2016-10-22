@@ -10,6 +10,7 @@
   "sourceGlobs": [
    "src/**/*",
    "images/**/*",
+   "config.js",
    "bower.json"
   ],
   "includeDependencies": [
