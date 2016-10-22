@@ -22,16 +22,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <iron-ajax
+              id="articleRequest"
+              url="http://localhost:3000"
+              params='{{requestParams}}'
+              handle-as="json"
+              last-response="{{ajaxResponse}}"
+              debounce-duration="300"></iron-ajax>
+      <marked-element markdown="{{ajaxResponse.markdown}}">
+        <div class="markdown-html"></div>
+      </marked-element>
     </div>
   </template>
 
   <script>
     Polymer({
-      is: 'my-view1'
+      is: 'my-view1',
+      ready: function() {
+        console.log("ready");
+        var self = this;
+        this.requestParams = {
+          articleName: "index"
+        };
+        setTimeout(function () {
+          self.$.articleRequest.generateRequest();
+        }, 0);
+      }
     });
   </script>
 </dom-module>
